@@ -33,41 +33,41 @@
 # Synaxi's own CDN instead, where Homebrew's `url` directive only cares
 # that the host is anonymously fetchable and the sha256 matches.
 #
-# The sha256 values below are still REPLACE_WITH_SHA256_<PLATFORM>:
-# this PR wires up publishing but does not fabricate hashes for a release
-# that hasn't actually run through CI's real signing/notarization
-# credentials yet. Once v0.11.0-beta.1 (or whichever tag is cut first with
-# this workflow) finishes, release.yml prints each archive's real sha256 in
-# the GitHub Release notes (see the "Compute bootstrap archive checksums"
-# step) — copy those values in here by hand. A small templating step that
-# auto-commits them back was considered and deliberately deferred (see the
-# PR body) rather than adding release-time repo-write permissions for a
-# first pass.
+# The sha256 values below are for v0.11.0-beta.4 — the first release where
+# this actually matters, since it's the first tag to run through the
+# synaxi.ai CDN publishing steps added in PR #62. Copied by hand from that
+# release's notes (see the "Compute bootstrap archive checksums" step) and
+# independently re-verified by downloading the darwin-arm64 archive from
+# the live CDN and re-hashing it locally — matches exactly. A small
+# templating step that auto-commits these back was considered and
+# deliberately deferred (see the v0.11.0 PR body) rather than adding
+# release-time repo-write permissions for a first pass — update this file
+# by hand for each new tagged release until that's revisited.
 class Synaxi < Formula
   desc "Local runtime that optimises and routes Claude Code traffic on your machine"
   homepage "https://synaxi.ai"
-  version "0.11.0-beta.1"
+  version "0.11.0-beta.4"
   license :cannot_represent # see LICENSE — source-available, proprietary, not an OSI/SPDX id
 
   on_macos do
     on_arm do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-arm64.tar.gz"
-      sha256 "REPLACE_WITH_SHA256_DARWIN_ARM64"
+      sha256 "b1e2ebfd025016da0da4675887493fd73513be2396fc94934a80687cc91c6577"
     end
     on_intel do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-amd64.tar.gz"
-      sha256 "REPLACE_WITH_SHA256_DARWIN_AMD64"
+      sha256 "ee0019f985209f90aac8464b9eacd596288f92fff76bf08bc4ec0451d5975cd2"
     end
   end
 
   on_linux do
     on_arm do
       url "https://synaxi.ai/releases/synaxi-#{version}-linux-arm64.tar.gz"
-      sha256 "REPLACE_WITH_SHA256_LINUX_ARM64"
+      sha256 "e69c0d84743a3d5d30068e8253397fd99475500cfc115c94248230c8c79bba77"
     end
     on_intel do
       url "https://synaxi.ai/releases/synaxi-#{version}-linux-amd64.tar.gz"
-      sha256 "REPLACE_WITH_SHA256_LINUX_AMD64"
+      sha256 "348f524119452a7c9d1d318865fa998dc338bc2df7de6eda5daa063424db4771"
     end
   end
 
