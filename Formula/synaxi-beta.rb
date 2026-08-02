@@ -9,11 +9,11 @@ class SynaxiBeta < Formula
   on_macos do
     on_arm do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-arm64.tar.gz"
-      sha256 "c80e75216db2a63a78fa8e2166531bde02e6884aef0f3b969928865401f8d007"
+      sha256 "c727c1ae87c3615b7526851fd5bd15a209d14ef6c306e6f87d2c6bb496d28846"
     end
     on_intel do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-amd64.tar.gz"
-      sha256 "604f01f13d79c523dbd7bd1ad03d0d69655e86b1e56b25a2f2de1086f0e5eb19"
+      sha256 "2432368c1d7eb317a6ad4c43e131fbe74c4dbdf142b0c08bab3865778485cd81"
     end
   end
 
