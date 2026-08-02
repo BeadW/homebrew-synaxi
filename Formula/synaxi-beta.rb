@@ -26,10 +26,10 @@ class SynaxiBeta < Formula
       This is a beta transport adapter for Codex.
 
       Start Codex with:
-        synaxi-beta wrap codex
+        synaxi wrap codex
 
       To capture local request fixtures for adapter development:
-        SYNAXI_CAPTURE_DIR="$HOME/.synaxi/codex-captures" synaxi-beta wrap codex
+        SYNAXI_CAPTURE_DIR="$HOME/.synaxi/codex-captures" synaxi wrap codex
 
       Captures may contain prompts and source code. Keep them local and delete
       them when no longer needed.
