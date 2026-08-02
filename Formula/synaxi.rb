@@ -1,5 +1,4 @@
-# Homebrew formula for the Synaxi CLI runtime (`synaxi`, `synaxi wrap`,
-# `synaxi dashboard`) — the package-manager install path from Workstream 8 of
+# Homebrew formula for the Synaxi CLI runtime (`synaxi wrap claude`).
 # docs/implementation-plan-target-architecture.md. This formula positions this
 # repository as its own tap:
 #
@@ -14,9 +13,7 @@
 # packages, and uploads the archives this formula points at, on every tag
 # push (beta and stable) — see the "CLI bootstrap archives" steps added in
 # the v0.11.0 PR. The archive layout convention used here:
-# synaxi-<version>-<os>-<arch>.tar.gz, each containing two files at its
-# root, `synaxi` and `synaxi-edge` (no wrapping directory) — chosen to
-# match the flat `bin.install` calls below.
+# synaxi-<version>-<os>-<arch>.tar.gz contains the single `synaxi` binary.
 #
 # URLs point at synaxi.ai (S3 bucket synaxi-ai-landing, fronted by
 # CloudFront distribution E1I4I3C3LJE3M), NOT github.com/BeadW/synaxi/
@@ -44,60 +41,41 @@
 # release-time repo-write permissions for a first pass — update this file
 # by hand for each new tagged release until that's revisited.
 class Synaxi < Formula
-  desc "Local runtime that optimises and routes Claude Code traffic on your machine"
+  desc "Local runtime that optimises AI coding-tool requests on your machine"
   homepage "https://synaxi.ai"
-  version "0.11.0-beta.4"
+  version "0.12.0"
   license :cannot_represent # see LICENSE — source-available, proprietary, not an OSI/SPDX id
 
   on_macos do
     on_arm do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-arm64.tar.gz"
-      sha256 "b1e2ebfd025016da0da4675887493fd73513be2396fc94934a80687cc91c6577"
+      sha256 "7fc03dbd5e9b591c385b8a36f5e5be29dbbc1cea8269943c79c15eb09ee5f459"
     end
     on_intel do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-amd64.tar.gz"
-      sha256 "ee0019f985209f90aac8464b9eacd596288f92fff76bf08bc4ec0451d5975cd2"
-    end
-  end
-
-  on_linux do
-    on_arm do
-      url "https://synaxi.ai/releases/synaxi-#{version}-linux-arm64.tar.gz"
-      sha256 "e69c0d84743a3d5d30068e8253397fd99475500cfc115c94248230c8c79bba77"
-    end
-    on_intel do
-      url "https://synaxi.ai/releases/synaxi-#{version}-linux-amd64.tar.gz"
-      sha256 "348f524119452a7c9d1d318865fa998dc338bc2df7de6eda5daa063424db4771"
+      sha256 "c3d48a2f1962f451be1773a473b0e7bbec8042b83341e4bd626263a95a8fe140"
     end
   end
 
   def install
     bin.install "synaxi"
-    bin.install "synaxi-edge"
   end
 
   def caveats
     <<~EOS
       Get started:
-        synaxi setup            # adds `synaxi` and a `claude` alias to your shell
         synaxi wrap claude      # runs Claude Code routed through the local runtime,
                                  # for that session only
 
-      Once synaxi is running, view savings and settings with:
-        synaxi dashboard        # opens the local dashboard in your browser
-
-      Synaxi runs entirely on this machine and talks directly to Anthropic or
-      Bedrock — installing it does not start any background process, and
-      nothing you send to Claude passes through a Synaxi-operated server.
+      Synaxi runs entirely on this machine and talks directly to your model
+      provider —
+      installing it does not start any background process, and
+      nothing you send to your model provider passes through a Synaxi-operated
+      server.
     EOS
   end
 
   test do
-    # `claude-plugin status` is local-only (reads files under ~/.synaxi and
-    # checks PATH for a claude binary) — no network call, no account, no
-    # daemon needed, so it's exit-0 in a bare CI sandbox. This just asserts
-    # the installed binary runs and exits cleanly; it is not a smoke test of
-    # daemon/auth behaviour, which needs a real account to validate.
-    system "#{bin}/synaxi", "claude-plugin", "status", "--json"
+    assert_match "usage: synaxi wrap claude", shell_output("#{bin}/synaxi wrap 2>&1", 2)
   end
 end
