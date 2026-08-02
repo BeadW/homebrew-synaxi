@@ -29,17 +29,6 @@
 # "Upload to S3" / "Invalidate CloudFront" steps): serve the archives from
 # Synaxi's own CDN instead, where Homebrew's `url` directive only cares
 # that the host is anonymously fetchable and the sha256 matches.
-#
-# The sha256 values below are for v0.11.0-beta.4 — the first release where
-# this actually matters, since it's the first tag to run through the
-# synaxi.ai CDN publishing steps added in PR #62. Copied by hand from that
-# release's notes (see the "Compute bootstrap archive checksums" step) and
-# independently re-verified by downloading the darwin-arm64 archive from
-# the live CDN and re-hashing it locally — matches exactly. A small
-# templating step that auto-commits these back was considered and
-# deliberately deferred (see the v0.11.0 PR body) rather than adding
-# release-time repo-write permissions for a first pass — update this file
-# by hand for each new tagged release until that's revisited.
 class Synaxi < Formula
   desc "Local runtime that optimises AI coding-tool requests on your machine"
   homepage "https://synaxi.ai"
