@@ -65,6 +65,6 @@ class Synaxi < Formula
   end
 
   test do
-    assert_match "usage: synaxi wrap claude", shell_output("#{bin}/synaxi wrap 2>&1", 2)
+    assert_match "usage: synaxi wrap <claude|codex>", shell_output("#{bin}/synaxi wrap 2>&1", 2)
   end
 end
