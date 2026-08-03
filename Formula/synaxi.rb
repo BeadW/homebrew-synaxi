@@ -32,17 +32,17 @@
 class Synaxi < Formula
   desc "Local runtime that optimises AI coding-tool requests on your machine"
   homepage "https://synaxi.ai"
-  version "0.12.0"
+  version "0.13.0"
   license :cannot_represent # see LICENSE — source-available, proprietary, not an OSI/SPDX id
 
   on_macos do
     on_arm do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-arm64.tar.gz"
-      sha256 "7fc03dbd5e9b591c385b8a36f5e5be29dbbc1cea8269943c79c15eb09ee5f459"
+      sha256 "80022d74b49ec80084facbafb8092316577daffca87675a587767efe01da3098"
     end
     on_intel do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-amd64.tar.gz"
-      sha256 "c3d48a2f1962f451be1773a473b0e7bbec8042b83341e4bd626263a95a8fe140"
+      sha256 "f26fe56bea12dec89304c3eada2a230a297e6aa4160a1197fd4a26522f17fe4a"
     end
   end
 
@@ -53,8 +53,8 @@ class Synaxi < Formula
   def caveats
     <<~EOS
       Get started:
-        synaxi wrap claude      # runs Claude Code routed through the local runtime,
-                                 # for that session only
+        synaxi wrap claude      # Claude Code
+        synaxi wrap codex       # Codex
 
       Synaxi runs entirely on this machine and talks directly to your model
       provider —
