@@ -1,7 +1,7 @@
 class SynaxiBeta < Formula
   desc "Beta local runtime for AI coding-tool requests"
   homepage "https://synaxi.ai"
-  version "0.13.0-beta.30"
+  version "0.13.0-beta.31"
   license :cannot_represent
 
   conflicts_with "synaxi", because: "the beta installs the same synaxi executable"
@@ -9,11 +9,11 @@ class SynaxiBeta < Formula
   on_macos do
     on_arm do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-arm64.tar.gz"
-      sha256 "5326e8e3e57366d07c02539516835508ce9e379b0789a7249d1910192fbe395d"
+      sha256 "d0001e88af0b2d8ac2d4fa27d764d6115cc77511a3bdc476a329b0e9874f960d"
     end
     on_intel do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-amd64.tar.gz"
-      sha256 "b5db4c63396c02f557d34caccc3cb3d16c6d0ec1af3dd161997911422b91698f"
+      sha256 "a14d4a77c34baf44a05a2aa52de02a49f280db729cf6b794194444e14827ea75"
     end
   end
 
