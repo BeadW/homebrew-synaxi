@@ -32,17 +32,17 @@
 class Synaxi < Formula
   desc "Local runtime that optimises AI coding-tool requests on your machine"
   homepage "https://synaxi.ai"
-  version "0.14.0"
+  version "0.14.1"
   license :cannot_represent # see LICENSE — source-available, proprietary, not an OSI/SPDX id
 
   on_macos do
     on_arm do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-arm64.tar.gz"
-      sha256 "b1c7ab1d8c35bf5436354c261e0c4c979cc4b5e268a7a75cb4c773114e8c5936"
+      sha256 "31da26eb5080eea059881dd4ebb6a3f08be86a3f74191d70788d9d0bd42aa19f"
     end
     on_intel do
       url "https://synaxi.ai/releases/synaxi-#{version}-darwin-amd64.tar.gz"
-      sha256 "352cfc0cdf498a26a952f8aaada1e78f6e57b627da9f03d11cfc7f308e52da2e"
+      sha256 "8f6ffb57e903cf5a2d88fed8367fb0db0113e4687d41246a007c5c6b103b7a5c"
     end
   end
 
